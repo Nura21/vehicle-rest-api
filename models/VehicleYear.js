@@ -2,29 +2,35 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const User = sequelize.define('User', {
+const VehicleYear = sequelize.define('VehicleYear', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  year: { //manufacturing year
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  kilometer: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  previous_owner: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  password: {
+  maintenance_record: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  is_admin: {
-    type: DataTypes.ENUM(1, 0),
+  accident_history: {
+    type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: '0',
+  },
+  service_history: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   created_at: {
     type: DataTypes.DATE,
@@ -40,4 +46,4 @@ const User = sequelize.define('User', {
   },
 });
 
-module.exports = User;
+module.exports = VehicleYear;

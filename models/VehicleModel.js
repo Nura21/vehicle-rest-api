@@ -1,8 +1,9 @@
 // models/User.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const VehicleType = require('../models/VehicleType');
 
-const User = sequelize.define('User', {
+const VehicleModel = sequelize.define('VehicleModel', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -12,19 +13,26 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
-    type: DataTypes.STRING,
+  type_id: {
+    type_id: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
   },
-  password: {
+  karoseri: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  is_admin: {
-    type: DataTypes.ENUM(1, 0),
+  machine: {
+    type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: '0',
+  },
+  transmission: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  history: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   created_at: {
     type: DataTypes.DATE,
@@ -40,4 +48,7 @@ const User = sequelize.define('User', {
   },
 });
 
-module.exports = User;
+VehicleModel.belongsTo(VehicleType, { foreignKey: 'type_id' }); // Define the association
+
+
+module.exports = VehicleModel;
