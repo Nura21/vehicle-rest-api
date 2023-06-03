@@ -32,11 +32,11 @@ const User = sequelize.define('User', {
   },
   updated_at: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
   },
   deleted_at: {
     type: DataTypes.DATE,
-    allowNull: false,
+    allowNull: true,
   },
 });
 

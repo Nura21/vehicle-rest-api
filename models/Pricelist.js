@@ -2,7 +2,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const VehicleYear = require('../models/VehicleYear');
-const VehicleModel = require('./VehicleModel');
+const VehicleModel = require('../models/VehicleModel');
 
 const Pricelist = sequelize.define('Pricelist', {
   id: {
@@ -41,7 +41,7 @@ const Pricelist = sequelize.define('Pricelist', {
     allowNull: false,
   },
   discount: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   created_at: {
@@ -58,7 +58,7 @@ const Pricelist = sequelize.define('Pricelist', {
   },
 });
 
-Pricelist.belongsTo(VehicleYear, { foreignKey: 'year_id' }); // Define the association
+Pricelist.belongsTo(VehicleYear, {foreignKey: 'year_id' }); // Define the association
 Pricelist.belongsTo(VehicleModel, {foreignKey: 'model_id'});
 
 
