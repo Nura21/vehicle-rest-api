@@ -1,17 +1,13 @@
-// isAdminMiddleware.js
-const isAdminMiddleware = (req, res, next) => {
-    // Check if the user is an admin
-    // Replace this with your own logic to determine if the user is an admin
-    const isAdmin = req.user.is_admin === 'admin';
-  
-    // If the user is not an admin, send an error response
-    if (!isAdmin) {
-      return res.status(403).json({ error: 'Unauthorized' });
-    }
-  
-    // If the user is an admin, proceed to the next middleware or route handler
+// middlewares/authMiddleware.js
+
+const isAdmin = (req, res, next) => {
+  const { user } = req;
+
+  if (user && user.isAdmin) {
     next();
-  };
-  
-  module.exports = isAdminMiddleware;
-  
+  } else {
+    res.status(403).json({ error: 'Access denied' });
+  }
+};
+
+module.exports = { isAdmin };
