@@ -1,7 +1,7 @@
 // routes/userRoutes.js
 const express = require('express');
 const { authenticateToken } = require('../middlewares/authMiddleware');
-const { validateUser } = require('../middlewares/validationMiddleware');
+// const { validateUser } = require('../middlewares/validationMiddleware');
 const { isAdmin } = require('../middlewares/isAdminMiddleware');
 const {
   createPricelist,
@@ -13,10 +13,10 @@ const {
 
 const router = express.Router();
 
-router.post('/', validateUser, isAdmin, createPricelist);
+router.post('/', isAdmin, createPricelist);
 router.get('/', authenticateToken, getPricelists);
 router.get('/:id', authenticateToken, isAdmin, getPricelistById);
-router.put('/:id', authenticateToken, isAdmin, validatePricelist, updatePricelist);
+router.put('/:id', authenticateToken, isAdmin, updatePricelist);
 router.delete('/:id', authenticateToken, isAdmin, deletePricelist);
 
 module.exports = router;
