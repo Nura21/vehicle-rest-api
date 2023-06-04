@@ -6,7 +6,9 @@ const isAdmin = (req, res, next) => {
   if (user && user.isAdmin) {
     next();
   } else {
-    res.status(403).json({ error: 'Access denied' });
+    res.status(403).json({ 
+      error: 'Access denied' 
+    });
   }
 };
 
