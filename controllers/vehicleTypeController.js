@@ -41,7 +41,7 @@ const getVehicleTypes = async (req, res) => {
 
     vehicleTypes = await VehicleType.findAll({ 
       where: whereClause 
-    );
+    });
     
     res.json(vehicleTypes);
   } catch (error) {
